@@ -51,6 +51,8 @@ function makeServicesArray(users) {
             name: 'test1',
             email: 'test1@email.com',
             phone: 1234567890,
+            city: 'austin',
+            state: 'texax',
             about: 'test about 1'
         },
         {
@@ -60,6 +62,8 @@ function makeServicesArray(users) {
             name: 'test12',
             email: 'test2@email.com',
             phone: 1234567890,
+            city: 'austin',
+            state: 'texax',
             about: 'test about 2'
         },
         {
@@ -69,6 +73,8 @@ function makeServicesArray(users) {
             name: 'test13',
             email: 'test3@email.com',
             phone: 1234567890,
+            city: 'austin',
+            state: 'texax',
             about: 'test about 3'
         },
         {
@@ -78,6 +84,8 @@ function makeServicesArray(users) {
             name: 'test4',
             email: 'test4@email.com',
             phone: 1234567890,
+            city: 'austin',
+            state: 'texax',
             about: 'test about 4'
         },
         {
@@ -87,6 +95,8 @@ function makeServicesArray(users) {
             name: 'test5',
             email: 'test5@email.com',
             phone: 1234567890,
+            city: 'austin',
+            state: 'texax',
             about: 'test about 5'
         }
     ]

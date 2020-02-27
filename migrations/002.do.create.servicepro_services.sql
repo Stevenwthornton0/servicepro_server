@@ -17,6 +17,8 @@ CREATE TABLE servicepro_services (
     name TEXT NOT NULL,
     about TEXT NOT NULL,
     email TEXT NOT NULL,
-    phone BIGINT NOT NULL
+    phone BIGINT NOT NULL,
+    city TEXT NOT NULL,
+    state TEXT NOT NULL
 );
 

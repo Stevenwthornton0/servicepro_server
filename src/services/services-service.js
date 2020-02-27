@@ -2,10 +2,17 @@ const xss = require('xss');
 
 const ServicesService = {
 
-    getServicesByType(db, service_type) {
+    getServicesByTypeFiltered(db, service_type, city, state) {
         return db('servicepro_services')
             .where({ service_type })
+            .where({ city })
+            .where({ state })
     },
+
+    getServicesByType(db, service_type) {
+      return db('servicepro_services')
+          .where({ service_type })
+  },
 
     getById(db, id) {
         return db
@@ -16,6 +23,8 @@ const ServicesService = {
             'serv.name',
             'serv.email',
             'serv.phone',
+            'serv.city',
+            'serv.state',
             'serv.about',
             db.raw(
               `json_strip_nulls(
@@ -75,6 +84,8 @@ const ServicesService = {
           name: xss(service.name),
           email: xss(service.email),
           phone: service.phone,
+          city: xss(service.city),
+          state: service.state,
           about: xss(service.about),
         }
   },
@@ -87,6 +98,8 @@ const ServicesService = {
             name: xss(service.name),
             email: xss(service.email),
             phone: service.phone,
+            city: xss(service.city),
+            state: service.state,
             about: xss(service.about),
             user: {
               id: user.id,

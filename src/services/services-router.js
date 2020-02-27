@@ -9,8 +9,8 @@ const jsonBodyParser = express.json();
 servicesRouter
     .route('/')
     .post(requireAuth, jsonBodyParser, (req, res, next) => {
-        const { service_type, name, email, phone, about } = req.body;
-        const newService = { service_type, name, email, phone, about };
+        const { service_type, name, email, phone, city, state, about } = req.body;
+        const newService = { service_type, name, email, phone, city, state, about };
 
         for (const [key, value] of Object.entries(newService))
             if (value == null)
@@ -27,7 +27,7 @@ servicesRouter
             .then(service => {
                 res
                 .status(201)
-                .location(path.posix.join(req.originalUrl, `/${service.id}`))
+                .location(path.posix.join(req.originalUrl, `/service/${service.id}`))
                 .json(ServicesService.serializeServiceWithUser(service))
             })
             .catch(next)
@@ -35,15 +35,28 @@ servicesRouter
 
 servicesRouter
     .route('/:serviceType')
-    .get((req, res, next) => {
-        ServicesService.getServicesByType(
-            req.app.get('db'),
-            req.params.serviceType
-        )
-            .then(services => {
-                res.json(services.map(ServicesService.serializeServiceWithoutUser))
-            })
-            .catch(next)
+    .get((req, res, next) => { 
+        if (req.query.city && req.query.state) {
+            ServicesService.getServicesByTypeFiltered(
+                req.app.get('db'),
+                req.params.serviceType,
+                req.query.city,
+                req.query.state
+            )
+                .then(services => {
+                    res.json(services.map(ServicesService.serializeServiceWithoutUser))
+                })
+                .catch(next)
+        } else {
+            ServicesService.getServicesByType(
+                req.app.get('db'),
+                req.params.serviceType,
+            )
+                .then(services => {
+                    res.json(services.map(ServicesService.serializeServiceWithoutUser))
+                })
+                .catch(next)
+        }
     })
 
 servicesRouter

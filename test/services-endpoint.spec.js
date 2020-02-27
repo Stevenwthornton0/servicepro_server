@@ -43,6 +43,8 @@ describe(`Services endpoint`, () => {
                 name: 'test name',
                 email: 'test@email.com',
                 phone: '1234567890',
+                city: 'austin',
+                state: 'texas',
                 about: 'test about'
             }
             return supertest(app)
@@ -56,9 +58,11 @@ describe(`Services endpoint`, () => {
                     expect(res.body.name).to.eql(newService.name)
                     expect(res.body.email).to.eql(newService.email)
                     expect(res.body.phone).to.eql(newService.phone)
+                    expect(res.body.city).to.eql(newService.city)
+                    expect(res.body.state).to.eql(newService.state)
                     expect(res.body.about).to.eql(newService.about)
                     expect(res.body.user.id).to.eql(testUser.id)
-                    expect(res.headers.location).to.eql(`/services/${res.body.id}`)
+                    expect(res.headers.location).to.eql(`/services/service/${res.body.id}`)
             })
             .expect(res =>
                 db
@@ -70,6 +74,9 @@ describe(`Services endpoint`, () => {
                     expect(row.service_type).to.eql(newService.service_type)
                     expect(row.name).to.eql(newService.name)
                     expect(row.email).to.eql(newService.email)
+                    expect(row.phone).to.eql(newService.phone)
+                    expect(row.city).to.eql(newService.city)
+                    expect(row.state).to.eql(newService.state)
                     expect(row.user_id).to.eql(testUser.id)
                 })
             )

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
-  "proxy": "https://servicepro-app.vercel.app",
+  "proxy": "https://servicepro-app.vercel.app/login",
   "scripts": {
     "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",

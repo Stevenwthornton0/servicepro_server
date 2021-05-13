@@ -16,7 +16,8 @@ const app = express();
   }));
 
   app.use(helmet());
-  app.use(cors());  
+  app.use(cors()); 
+  app.options('*', cors()); 
 
   app.use('/auth', authRouter)
   app.use('/users', usersRouter)

@@ -5,6 +5,6 @@ module.exports = {
     "driver": "pg",
     "connectionString": (process.env.NODE_ENV === 'test')
         ? process.env.TEST_DATABASE_URL
-        : "postgres://eeotnogc:jTUCY7jmw45JqVGz8IHZz2a2ndVyy7g2@mouse.db.elephantsql.com/eeotnogc",
+        : process.env.DATABASE_URL,
     "ssl": !!process.env.SSL,
 }   
